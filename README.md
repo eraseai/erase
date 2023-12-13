@@ -6,6 +6,29 @@ Code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noi
 
 <sup>1</sup>Tsinghua University, <sup>2</sup>SwanHub.co, <sup>3</sup>Xidian University, <sup>4</sup>The University of Sydney
 
+
+<p align="center">
+  <a href='https://arxiv.org/abs/2310.12978'>
+  <img src='https://img.shields.io/badge/Arxiv-2310.12978-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
+  </a> 
+  <a href='https://arxiv.org/pdf/2310.12978.pdf'>
+  <img src='https://img.shields.io/badge/Paper-PDF-yellow?style=flat&logo=arXiv&logoColor=yellow'>
+  </a> 
+  <a href='https://eraseai.github.io/ERASE-page'>
+  <img src='https://img.shields.io/badge/Project-Page-%23df5b46?style=flat&logo=Google%20chrome&logoColor=%23df5b46'></a> 
+  <a href='https://www.youtube.com/watch?v=-lyikDpDoEw'>
+  <img src='https://img.shields.io/badge/YouTube-Video-EA3323?style=flat&logo=youtube&logoColor=EA3323'></a> 
+  <a href='https://github.com/eraseai/erase'>
+  <img src='https://img.shields.io/badge/GitHub-Code-black?style=flat&logo=github&logoColor=white'></a> 
+  <a href='LICENSE'>
+  <img src='https://img.shields.io/badge/License-ERASE-blue.svg'>
+  </a> 
+  <a href="" target='_blank'>
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=eraseai.erase&left_color=gray&right_color=%2342b983">
+  </a> 
+</p>
+
+
 >Deep learning has achieved remarkable success in graph-related tasks, yet this accomplishment heavily relies on large-scale high-quality annotated datasets. However, acquiring such datasets can be cost-prohibitive, leading to the practical use of labels obtained from economically efficient sources such as web searches and user tags. Unfortunately, these labels often come with noise, compromising the generalization performance of deep networks.
 To tackle  this challenge and enhance the robustness of deep learning models against label noise in graph-based tasks, we propose a method called ERASE (Error-Resilient representation learning on graphs for lAbel noiSe tolerancE). The core idea of ERASE is to learn representations with error tolerance by maximizing coding rate reduction. Particularly, we introduce a decoupled label propagation method for learning representations. Before training, noisy labels are pre-corrected through structural denoising. During training, ERASE combines prototype pseudo-labels with propagated denoised labels and updates representations with error resilience, which significantly improves the generalization performance in node classification. The proposed method allows us to more effectively withstand errors caused by mislabeled nodes, thereby strengthening the robustness of deep networks in handling noisy graph data. Extensive experimental results show that our method can outperform multiple baselines with clear margins in broad noise levels and enjoy great scalability. Codes are released at https://github.com/eraseai/erase. 
 
