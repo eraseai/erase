@@ -10,12 +10,8 @@ Code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noi
 To tackle  this challenge and enhance the robustness of deep learning models against label noise in graph-based tasks, we propose a method called ERASE (Error-Resilient representation learning on graphs for lAbel noiSe tolerancE). The core idea of ERASE is to learn representations with error tolerance by maximizing coding rate reduction. Particularly, we introduce a decoupled label propagation method for learning representations. Before training, noisy labels are pre-corrected through structural denoising. During training, ERASE combines prototype pseudo-labels with propagated denoised labels and updates representations with error resilience, which significantly improves the generalization performance in node classification. The proposed method allows us to more effectively withstand errors caused by mislabeled nodes, thereby strengthening the robustness of deep networks in handling noisy graph data. Extensive experimental results show that our method can outperform multiple baselines with clear margins in broad noise levels and enjoy great scalability. Codes are released at https://github.com/eraseai/erase. 
 
 ## 🗂️ Preparation
-### Data
-**Datasets for Cora, CiteSeer, PubMed, and CoraFull have been implanted in [PyG](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html#torch_geometric.datasets.Planetoid).**
-
-**Dataset for [OGBn-arxiv](https://ogb.stanford.edu/docs/nodeprop/#ogbn-arxiv)**
-
-The final `./data` directory structure is shown below:
+### 📊 Data
+Datasets for Cora, CiteSeer, PubMed, CoraFull, and [OGBn-arxiv](https://ogb.stanford.edu/docs/nodeprop/#ogbn-arxiv) are integrated in [PyG](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html#torch_geometric.datasets.Planetoid). The datasets will be downloaded by the codes automatically. And your `./data` directory structure is shown as follows after running [training codes](https://github.com/eraseai/erase?tab=readme-ov-file#-training).
 
 ```
 data
@@ -55,7 +51,7 @@ data
         ├── raw
         └── split
 ```
-### Environment Setup
+### 🕹️ Environment Setup
 
 ```
 sh install.sh
@@ -101,11 +97,11 @@ After running the command, a directory named `<DATASET>_<INDEX> ` is created in 
 
 Before getting visualization results, please ensure that you have saved the pre-trained models. Hereby we show the example to get visualization results on Cora when the asymmetric noise ratio is 0.1.
 ```
-python scripts/visualize.py --dataset Cora --resume exp_output/Cora/asymm_noise_ratio_0.1/ckpt/best_model.pth -- corrupt_type asymm --corrupt_ratio 0.1'
+python scripts/visualize.py --dataset Cora --resume exp_output/Cora/asymm_noise_ratio_0.1/ckpt/best_model.pth -- corrupt_type asymm --corrupt_ratio 0.1
 ```
 
 
-### Example of Visualization Results 
+### 🧐 Example of Visualization Results 
 Cosine Similarity Matrix Visualization
 <p align="center">
     <img src="./assets/heatmap.png" width="50%">
@@ -126,3 +122,6 @@ The codes are distributed under a non-commercial [LICENSE](https://github.com/er
 ## 🌹 Acknowledgments
 
 The author team would sincerely acknowledge [MCR<sup>2</sup> authors](https://github.com/ryanchankh/mcr2/blob/master) and [G<sup>2</sup>R authors](https://github.com/ahxt/G2R) for providing significant reference and codebase. Portions of this code were adapted from these open-source projects.
+
+## 🤝 Citation
+
