@@ -16,7 +16,7 @@ Code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noi
   </a> 
   <a href='https://eraseai.github.io/ERASE-page'>
   <img src='https://img.shields.io/badge/Project-Page-%23df5b46?style=flat&logo=Google%20chrome&logoColor=%23df5b46'></a> 
-  <a href='https://www.youtube.com/watch?v=-lyikDpDoEw'>
+  <a href='https://youtu.be/w5HwGb8bElA'>
   <img src='https://img.shields.io/badge/YouTube-Video-EA3323?style=flat&logo=youtube&logoColor=EA3323'></a> 
   <a href='https://github.com/eraseai/erase'>
   <img src='https://img.shields.io/badge/GitHub-Code-black?style=flat&logo=github&logoColor=white'></a> 
