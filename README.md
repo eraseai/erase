@@ -1,9 +1,4 @@
 # ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance
-
-<p align="center">
-    <img src="./assets/logo.png" width="40%">
-</p>
-
 Official code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance". 
 
 
@@ -32,6 +27,11 @@ Official code for "ERASE: Error-Resilient Representation Learning on Graphs for 
   <img src="https://visitor-badge.laobi.icu/badge?page_id=eraseai.erase&left_color=gray&right_color=%2342b983">
   </a> 
 </p>
+
+<p align="center">
+    <img src="./assets/logo.png" width="25%">
+</p>
+
 
 ## 📖 Abstract
 
