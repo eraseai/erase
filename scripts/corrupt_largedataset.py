@@ -12,10 +12,9 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
-# MIT License
 # Copyright (c) 2022 Xiaotian Han
 # ----------------------------------------------------------------------------------------------------------------------------
-# Portions of this code were adapted from the fllowing open-source project:
+# Portions of this code were adapted from the following open-source project:
 # https://github.com/ryanchankh/mcr2/blob/master
 # https://github.com/ahxt/G2R
 # ----------------------------------------------------------------------------------------------------------------------------
