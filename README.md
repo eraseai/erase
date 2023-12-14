@@ -1,5 +1,10 @@
 # ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance
-Code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance". 
+
+<p align="center">
+    <img src="./assets/logo.png" width="40%">
+</p>
+
+Official code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance". 
 
 
 [Ling-Hao Chen](https://lhchen.top/)<sup>1,2</sup>, Yuanshuo Zhang<sup>2,3</sup>, Taohua Huang<sup>3</sup>, [Liangcai Su](https://liangcaisu.github.io/)<sup>1</sup>, Zeyi Lin<sup>2,3</sup>, Xi Xiao<sup>1</sup>, [Xiaobo Xia](https://xiaoboxia.github.io/)<sup>4</sup>, [Tongliang Liu](https://tongliang-liu.github.io/)<sup>4</sup>
