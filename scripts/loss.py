@@ -12,7 +12,6 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
-# MIT License
 # Copyright (c) 2022 Xiaotian Han 
 # ----------------------------------------------------------------------------------------------------------------------------
 # Portions of this code were adapted from the fllowing open-source project:
@@ -38,7 +37,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute theoretical discrimn loss of learned representations
     def compute_discrimn_loss_theoretical(self, W):
-        """Theoretical Discriminative Loss."""
         p, m = W.shape
         I = torch.eye(p)
         I = I.to(W.device)
@@ -48,7 +46,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute empirical discrimn loss of learned representations
     def compute_discrimn_loss_empirical(self, W):
-        """Empirical Discriminative Loss."""
         p, m = W.shape
         I = torch.eye(p).cuda()
         scalar = p / (m * self.eps)
@@ -57,7 +54,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute theoretical compress loss of learned representations
     def compute_compress_loss_theoretical(self, W, Pi):
-        """Theoretical Compressive Loss."""
         p, m = W.shape
         k, _, _ = Pi.shape
         I = torch.eye(p).cuda()
@@ -71,7 +67,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute empirical compress loss of learned representations
     def compute_compress_loss_empirical(self, W, Pi):
-        """Empirical Compressive Loss."""
         p, m = W.shape
         k, _, _ = Pi.shape
         I = torch.eye(p).cuda()
@@ -86,7 +81,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     #optimized function to compute empirical compress loss of learned representations
     #using mask to replace membership matrix to reduce memory consumption for cases where the dataset has many classes
     def compute_compress_loss_empirical_manyclass(self, W, L_all):
-        """Empirical Compressive Loss."""
         p, m = W.shape
         k = torch.max(L_all)+1
         I = torch.eye(p).cuda()

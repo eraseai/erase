@@ -12,7 +12,6 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
-# MIT License
 # Copyright (c) 2022 Xiaotian Han 
 # ----------------------------------------------------------------------------------------------------------------------------
 # Portions of this code were adapted from the fllowing open-source project:
@@ -25,7 +24,7 @@ from cuml.preprocessing import normalize
 from cuml.linear_model import LogisticRegression
 
 
-def Linear_classifier(args, out,split_idx,noisy_train_labels,clean_labels,evaluator):
+def Linear_classifier(out,split_idx,noisy_train_labels,clean_labels,evaluator):
     """
     Evaluate the representation quality of the model using logistic regression.
 
