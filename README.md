@@ -8,10 +8,10 @@ Official code for "ERASE: Error-Resilient Representation Learning on Graphs for 
 
 
 <p align="center">
-  <a href='https://arxiv.org/abs/2310.12978'>
-  <img src='https://img.shields.io/badge/Arxiv-2310.12978-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
+  <a href='https://arxiv.org/abs/2312.08852'>
+  <img src='https://img.shields.io/badge/Arxiv-2312.08852-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
   </a> 
-  <a href='https://arxiv.org/pdf/2310.12978.pdf'>
+  <a href='https://arxiv.org/pdf/2312.08852.pdf'>
   <img src='https://img.shields.io/badge/Paper-PDF-yellow?style=flat&logo=arXiv&logoColor=yellow'>
   </a> 
   <a href='https://eraseai.github.io/ERASE-page'>
