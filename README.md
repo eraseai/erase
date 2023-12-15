@@ -154,3 +154,12 @@ The author team would sincerely acknowledge [MCR<sup>2</sup> authors](https://gi
 
 ## 🤝 Citation
 
+```bash
+@article{chen2023erase,
+title={ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance},
+author={Chen, Ling-Hao and Zhang, Yuanshuo and Huang, Taohua and Su, Liangcai and Lin, Zeyi and Xiao, Xi and Xia, Xiaobo and Liu, Tongliang},
+journal={Arxiv 2312.08852},
+year={2023}
+}
+```
+
