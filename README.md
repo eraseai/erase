@@ -166,7 +166,7 @@ year={2023}
 ## 🌟 Star History
 
 <p align="center">
-    <a href="https://star-history.com/#IDEA-Research/HumanTOMATO&Date" target="_blank">
+    <a href="https://star-history.com/#eraseai/erase&Date" target="_blank">
         <img width="500" src="https://api.star-history.com/svg?repos=eraseai/erase&type=Date" alt="Star History Chart">
     </a>
 <p>
