@@ -6,7 +6,6 @@ Official code for "ERASE: Error-Resilient Representation Learning on Graphs for 
 
 <sup>1</sup>Tsinghua University, <sup>2</sup>SwanHub.co, <sup>3</sup>Xidian University, <sup>4</sup>The University of Sydney
 
-
 <p align="center">
   <a href='https://arxiv.org/abs/2312.08852'>
   <img src='https://img.shields.io/badge/Arxiv-2312.08852-A42C25?style=flat&logo=arXiv&logoColor=A42C25'>
