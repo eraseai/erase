@@ -85,7 +85,7 @@ def get_objs(args):
     res = dict()
     res['device'] = device
     transforms = T.ToUndirected()
-    dataset = PygNodePropPredDataset(name=args.dataset, transform=transforms,root='dataset')
+    dataset = PygNodePropPredDataset(name=args.dataset, transform=transforms,root='data/Ogb')
     res['dataset'] = dataset
     data = dataset[0]
     res['data'] = data
