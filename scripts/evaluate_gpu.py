@@ -24,9 +24,21 @@ from cuml.preprocessing import normalize
 from cuml.linear_model import LogisticRegression
 
 
-def Linear_classifier(args, out,split_idx,noisy_train_labels,clean_labels,evaluator):
-    device = args.device
-    num_classes = (torch.max(clean_labels)+1).cpu().item()
+def Linear_classifier(out,split_idx,noisy_train_labels,clean_labels,evaluator):
+    """
+    Evaluate the representation quality of the model using logistic regression.
+
+    Args:
+        out: Learned representations.
+        split_idx: The split index.
+        clean_labels: Ground-truth node labels.
+        evaluator: The evaluator from ogb.nodeproppred.
+
+    Returns:
+        train_acc: Accuracy on training set.
+        valid_acc: Accuracy on validation set.
+        test_acc: Accuracy on test set.
+    """
     out = out.detach().cpu().numpy()
     out = normalize(out,norm='l2')
     train_features = out[split_idx['train']]
