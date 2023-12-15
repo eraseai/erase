@@ -31,7 +31,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
 
     #compute theoretical discrimn loss of learned representations
     def compute_discrimn_loss_theoretical(self, W):
-        """Theoretical Discriminative Loss."""
         p, m = W.shape
         I = torch.eye(p)
         I = I.to(W.device)
@@ -41,7 +40,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute empirical discrimn loss of learned representations
     def compute_discrimn_loss_empirical(self, W,device):
-        """Empirical Discriminative Loss."""
         p, m = W.shape
         I = torch.eye(p).to(device)
         I = I.to(W.device)
@@ -51,7 +49,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute theoretical compress loss of learned representations
     def compute_compress_loss_theoretical(self, W, Pi):
-        """Theoretical Compressive Loss."""
         p, m = W.shape
         k, _, _ = Pi.shape
         I = torch.eye(p)
@@ -66,7 +63,6 @@ class MaximalCodingRateReduction(torch.nn.Module):
     
     #compute empirical compress loss of learned representations
     def compute_compress_loss_empirical(self, W, Pi,device):
-        """Empirical Compressive Loss."""
         p, m = W.shape
         k, _, _ = Pi.shape
         I = torch.eye(p).to(device)

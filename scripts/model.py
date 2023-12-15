@@ -12,7 +12,6 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
-# MIT License
 # Copyright (c) 2022 Xiaotian Han 
 # ----------------------------------------------------------------------------------------------------------------------------
 # Portions of this code were adapted from the fllowing open-source project:
@@ -23,7 +22,7 @@ from enum import Enum, auto
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch_geometric.nn import GATConv,GCNConv
+from torch_geometric.nn import GATConv
 from torch_geometric.nn.conv import GATv2Conv
 from torch_geometric.utils import add_remaining_self_loops
 from torch_scatter import scatter_add
@@ -32,8 +31,25 @@ from tqdm import tqdm
 class GAT(torch.nn.Module):
     def __init__(self, base_layer, in_channels, hidden_channels, out_channels, num_layers, num_heads,
                  dropout, device, use_layer_norm, use_adj_norm, use_residual, use_resdiual_linear):
-        super(GAT, self).__init__()
+        """
+        initialize the GAT model.
 
+        Args:
+            base_layer: The base layer of GAT model.
+            in_channels: The number of input channels.
+            hidden_channels: The number of hidden channels.
+            out_channels: The number of output channels.
+            num_layers: The number of layers.
+            num_heads: The number of heads.
+            dropout: The dropout rate.
+            device: The device to use.
+            use_layer_norm: If set to :obj:`True`, will use layer normalization.
+            use_adj_norm: If set to :obj:`True`, will use adjacency matrix normalization.
+            use_residual: If set to :obj:`True`, will use residual connections.
+            use_resdiual_linear: If set to :obj:`True`, will use residual linear connections.
+        """
+        
+        super(GAT, self).__init__()
         #initialize the parameters
         kwargs = {'bias':True}
         self.use_adj_norm = use_adj_norm
@@ -115,7 +131,17 @@ class GAT(torch.nn.Module):
         return edge_index, deg_inv_sqrt[row] * edge_weight * deg_inv_sqrt[col]
     
     def forward(self,x,edge_index,edge_weight=None):
-        """Forward propagation of the GAT model."""
+        """
+        Forward propagation of the GAT model.
+
+        Args:
+            x: The input data.
+            edge_index: The edge indices.
+            edge_weight: The edge weights.
+        
+        Returns:
+            x: The output data.
+        """
         for i in range(len(self.layers)):
 
             #dropout process

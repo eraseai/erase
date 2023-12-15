@@ -12,7 +12,6 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
-# MIT License
 # Copyright (c) 2022 Xiaotian Han 
 # ----------------------------------------------------------------------------------------------------------------------------
 # Portions of this code were adapted from the fllowing open-source project:
@@ -44,6 +43,8 @@ def train(args,model, data,Y_all,loader,optimizer,epoch):
     discrimn_loss_empi = 0
     compress_loss_empi = 0
     delta_R = 0
+    iter = 0
+    best_val_acc = 0
 
     #train the model using batched data, the maximum accuracy is usually achieved within first several iters of the first epoch
     for batch_size, n_id, adjs in tqdm(loader, leave=False, desc=f"Epoch {epoch}", dynamic_ncols=True):
@@ -60,12 +61,13 @@ def train(args,model, data,Y_all,loader,optimizer,epoch):
         loss.backward()
         optimizer.step()
         delta_R+=(loss_theo[0]-loss_theo[1])
+        iter += 1
     discrimn_loss_empi = discrimn_loss_empi/len(loader)
     compress_loss_empi = compress_loss_empi/len(loader)
     delta_R = delta_R/len(loader)
     total_loss = total_loss/len(loader)
 
-    return discrimn_loss_empi, compress_loss_empi, total_loss,delta_R
+    return iter,total_loss,best_val_acc
         
 @torch.no_grad()
 def test(args,model, data,clean_y,L, loader, split_idx,evaluator,epoch,iter):
@@ -83,7 +85,7 @@ def get_objs(args):
     res = dict()
     res['device'] = device
     transforms = T.ToUndirected()
-    dataset = PygNodePropPredDataset(name=args.dataset, transform=transforms,root='data/Ogb')
+    dataset = PygNodePropPredDataset(name=args.dataset, transform=transforms,root='dataset')
     res['dataset'] = dataset
     data = dataset[0]
     res['data'] = data
@@ -181,7 +183,7 @@ def main():
             Y_all = compute_semantic_structral_label(args,data,model,subgraph_loader,denoised_y[train_idx],train_idx)
             #train the model
             iter,loss,best_val_acc= train(args,model, data, Y_all,train_loader, optimizer,epoch)
-            total_loss = loss[2]
+            total_loss = loss
             #evaluate the model
             if epoch % args.eval_steps == 0:
                 Y_all = compute_semantic_structral_label(args,data,model,subgraph_loader,denoised_y[train_idx],train_idx)
@@ -198,7 +200,7 @@ def main():
                     best_acc = test_acc  
                     best_val_acc = valid_acc
                     best_epoch = epoch 
-                    torch.save(model.state_dict(), os.path.join(args.exp_dir, 'models',f'best_model.pt'))
+                    torch.save(model.state_dict(), os.path.join(args.exp_dir, 'ckpt',f'best_model.pt'))
             if epoch - best_epoch > args.patience:
                 break
         best_acc_lst.append(100*best_acc)
