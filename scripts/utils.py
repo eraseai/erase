@@ -212,13 +212,9 @@ def setup_seed(seed):
     torch.backends.cudnn.deterministic = True
 
 
-def denoising_propagation(args, noisy_y):
+def denoising_propagation(args,data,split_idx, noisy_y):
     """Propagate the noisy labels."""
     device = args.device
-    dataset = PygNodePropPredDataset(name=args.dataset, root='dataset', transform=T.Compose([
-        T.ToUndirected(),]))
-    data = dataset[0].to(device)
-    split_idx = dataset.get_idx_split()
     model = LabelPropagation(num_layers=args.T, alpha=args.alpha)
     out = model(noisy_y, data.edge_index, mask=split_idx['train'].to(device))
     return out
