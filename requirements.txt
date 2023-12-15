@@ -4,12 +4,12 @@ cuml-cu11==23.4.1
 matplotlib==3.7.1
 scikit-learn==1.3.0
 scipy==1.10.1
-torch @ http://download.pytorch.org/whl/cu118/torch-2.0.0%2Bcu118-cp38-cp38-linux_x86_64.whl
+torch ==2.0.0
+torchvision==0.15.1+cu118
 torch-cluster==1.6.1+pt20cu118
 torch-geometric==2.3.1
 torch-scatter==2.1.1+pt20cu118
 torch-sparse==0.6.17+pt20cu118
 torch-spline-conv==1.2.2+pt20cu118
-torchvision @ http://download.pytorch.org/whl/cu118/torchvision-0.15.1%2Bcu118-cp38-cp38-linux_x86_64.whl
-tqdm @ file:///tmp/build/80754af9/tqdm_1625563689033/work
+tqdm ==4.61.2
 
