@@ -154,6 +154,7 @@ The author team would sincerely acknowledge [MCR<sup>2</sup> authors](https://gi
 
 ## 🤝 Citation
 
+If you find the code is useful in your research, please cite us:
 ```bash
 @article{chen2023erase,
 title={ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance},
@@ -162,4 +163,14 @@ journal={Arxiv 2312.08852},
 year={2023}
 }
 ```
+
+## 🌟 Star History
+
+<p align="center">
+    <a href="https://star-history.com/#IDEA-Research/HumanTOMATO&Date" target="_blank">
+        <img width="500" src="https://api.star-history.com/svg?repos=eraseai/erase&type=Date" alt="Star History Chart">
+    </a>
+<p>
+
+If you have any questions, please contact thu [DOT] lhchen [AT] gmail [DOT] com.
 
