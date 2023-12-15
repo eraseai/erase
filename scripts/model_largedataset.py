@@ -12,6 +12,7 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
+# MIT License
 # Copyright (c) 2022 Xiaotian Han 
 # ----------------------------------------------------------------------------------------------------------------------------
 # Portions of this code were adapted from the fllowing open-source project:
@@ -39,23 +40,30 @@ class GAT(torch.nn.Module):
                  dropout, device, use_layer_norm, use_adj_norm, use_residual, use_resdiual_linear):
         super(GAT, self).__init__()
 
-        self.layers = torch.nn.ModuleList()
-        kwargs = {
-            'bias':True
-        }
-        if base_layer is GAT2Conv:
-            kwargs['share_weights'] = False
-        self.use_adj_norm = use_adj_norm
-        self.layers.append(base_layer(in_channels, hidden_channels // num_heads, num_heads, **kwargs))
+        #initialize the parameters
         self.use_layer_norm = use_layer_norm
         self.use_residual = use_residual
         self.use_resdiual_linear = use_resdiual_linear
+        kwargs = {'bias':True}
+        if base_layer is GAT2Conv:
+            kwargs['share_weights'] = False
+        self.use_adj_norm = use_adj_norm
+
+        #initialize the layers
+        self.layers = torch.nn.ModuleList()
+        self.layers.append(base_layer(in_channels, hidden_channels // num_heads, num_heads, **kwargs))
+
+        #initialize the layer norm
         self.layer_norms = torch.nn.ModuleList()
         if use_layer_norm:
             self.layer_norms.append(nn.LayerNorm(hidden_channels))
+        
+        #initialize the residuals
         self.residuals = torch.nn.ModuleList()
         if use_resdiual_linear and use_residual:
             self.residuals.append(nn.Linear(in_channels, hidden_channels))
+        
+        #add the hidden layers
         self.num_layers = num_layers
         for _ in range(num_layers - 2):
             self.layers.append(
@@ -65,15 +73,17 @@ class GAT(torch.nn.Module):
             if use_resdiual_linear and use_residual:
                 self.residuals.append(nn.Linear(hidden_channels, hidden_channels))
         self.layers.append(base_layer(hidden_channels, out_channels, 1, **kwargs ))
-        if use_resdiual_linear and use_residual:
-            self.residuals.append(nn.Linear(hidden_channels, out_channels))
+
+        #initialize the activation function
         self.dropout = dropout
         self.device = device
         self.non_linearity = F.relu
         self.non_linearity_end = F.relu
+
         print(f"learnable_params: {sum(p.numel() for p in list(self.parameters()) if p.requires_grad)}")
 
     def reset_parameters(self):
+        """Reinitialize model parameters."""
         for layer in self.layers:
             layer.reset_parameters()
         for layer in self.layer_norms:
@@ -83,6 +93,21 @@ class GAT(torch.nn.Module):
 
     @staticmethod
     def norm(edge_index, num_nodes, edge_weight=None, improved=False, dtype=None):
+        """
+        Normalize the adjacency matrix.
+        
+        Args:
+            edge_index: The edge indices.
+            num_nodes: The number of nodes.
+            edge_weight: The edge weights.
+            improved: If set to :obj:`True`, the output will be scaled with
+                :math:`1 / \sqrt{\mathrm{deg}(i) \cdot \mathrm{deg}(j)}`.
+            dtype: The desired data type of returned tensor.
+
+        Returns:
+            edge_index: The normalized edge indices.
+            edge_weight: The normalized edge weights. 
+        """
         if edge_weight is None:
             edge_weight = torch.ones((edge_index.size(1), ), dtype=dtype, device=edge_index.device)
 
@@ -99,22 +124,29 @@ class GAT(torch.nn.Module):
     def forward(self,x,adjs,edge_weight=None):
         for i, (edge_index, _, size) in enumerate(adjs):
 
+            #dropout process
             if i < self.num_layers - 1:
                 x = F.dropout(x, p=self.dropout, training=self.training)
+            
+            #normalize the adjacency matrix
             if self.use_adj_norm:
                 edge_index,edge_weight = self.norm(edge_index, x.shape[0], edge_weight, improved=False, dtype=x.dtype)
                 new_x = self.layers[i](x,edge_index,edge_attr=edge_weight)
             else:
-
                 new_x = self.layers[i](x,edge_index)
 
+            #residual process
             if 0 < i < self.num_layers - 1 and self.use_residual:
                 x = new_x + x
             else:
                 x = new_x
+
+            #layer norm process
             if i < self.num_layers - 1:
                 if self.use_layer_norm:
                     x = self.layer_norms[i](x)
+            
+            #activation function
             if i != self.num_layers - 1:
                 x = self.non_linearity(new_x)
             x = F.normalize(x,p=1)   
@@ -123,6 +155,17 @@ class GAT(torch.nn.Module):
         return x
 
     def inference(self, x, subgraph_loader,edge_weight=None):
+        """
+        Inference with the GAT model.
+
+        Args:
+            x: The input node features.
+            subgraph_loader: The subgraph data loader.
+            edge_weight: The edge weights.
+        
+        Returns:
+            The output node representations.
+        """
         pbar = tqdm(total=x.size(0) * len(self.layers), leave=False, desc="Layer", disable=False)
         pbar.set_description('Evaluating')
         for i, layer in enumerate(self.layers[:-1]):
@@ -142,10 +185,7 @@ class GAT(torch.nn.Module):
 
                 x_target = F.normalize(x_target,p=1) 
                 xs.append(x_target.cpu())  
-
-                
                 pbar.update(batch_size)
-        
             x = torch.cat(xs, dim=0)
         xs=[]
         cnt=0
@@ -153,7 +193,7 @@ class GAT(torch.nn.Module):
             cnt+=1
             edge_index, _, size = adj.to(self.device)
             x_source = x[n_id].to(self.device)
-            x_target = x_source[:size[1]]  # Target nodes are always placed first.
+            x_target = x_source[:size[1]]
             new_x = self.layers[-1]((x_source, x_target), edge_index)
             xs.append(new_x.cpu())
             pbar.update(batch_size)
@@ -184,12 +224,14 @@ class GAT_TYPE(Enum):
         return "NA"
 
     def get_model(self, in_channels, hidden_channels, out_channels, num_layers, num_heads, dropout, device,  use_layer_norm, use_adj_norm, use_residual, use_resdiual_linear):
+        """Return the GAT model."""
         if self is GAT_TYPE.GAT:
             return GAT(GATConv, in_channels, hidden_channels, out_channels, num_layers, num_heads, dropout, device,  use_layer_norm, use_adj_norm, use_residual, use_resdiual_linear)
         elif self is GAT_TYPE.GAT2:
             return GAT(GAT2Conv, in_channels, hidden_channels, out_channels, num_layers, num_heads, dropout, device,  use_layer_norm, use_adj_norm, use_residual, use_resdiual_linear)
 
     def get_base_layer(self):
+        """Return the base layer of GAT model"""
         if self is GAT_TYPE.GAT:
             return GATConv
         elif self is GAT_TYPE.GAT2:

@@ -12,9 +12,10 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
+# MIT License
 # Copyright (c) 2022 Xiaotian Han
 # ----------------------------------------------------------------------------------------------------------------------------
-# Portions of this code were adapted from the following open-source project:
+# Portions of this code were adapted from the fllowing open-source project:
 # https://github.com/ryanchankh/mcr2/blob/master
 # https://github.com/ahxt/G2R
 # ----------------------------------------------------------------------------------------------------------------------------
@@ -48,7 +49,7 @@ def default_corrupt(trainset, ratio, seed, train_mask, t="asymm"):
         for i in range(num_classes):
             C[i][np.random.choice(row_indices[row_indices != i])] = ratio
 
-        #using corruption matrix to corrupt the labels and append them into a list
+        #corrupt the labels and append them into a list
         for label_i in trainset.y[train_mask]:
             data1 = np.random.choice(trainset.num_classes, p=C[label_i])
             label.append(data1)
@@ -66,7 +67,7 @@ def default_corrupt(trainset, ratio, seed, train_mask, t="asymm"):
         np.fill_diagonal(off_diagnal, 0)
         data = np.eye(num_classes) * (1 - ratio) + off_diagnal
 
-        #using corruption matrix to corrupt the labels and append them into a list
+        #corrupt the labels and append them into a list
         for label_i in trainset.y[train_mask]:
             data1 = np.random.choice(num_classes, p=data[label_i])
             label.append(data1)

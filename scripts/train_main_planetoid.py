@@ -12,6 +12,7 @@
 #
 #
 # ----------------------------------------------------------------------------------------------------------------------------
+# MIT License
 # Copyright (c) 2022 Xiaotian Han 
 # ----------------------------------------------------------------------------------------------------------------------------
 # Portions of this code were adapted from the fllowing open-source project:
@@ -135,7 +136,7 @@ def main():
     noisy_y = clean_y.clone()
     train_mask = data.train_mask.clone()
     noisy_y[train_mask] = default_corrupt(data,args.corrupt_ratio,args.seed,train_mask,t=args.corrupt_type).to(device)
-    #preprocess the data to generate the adjacency matrix and the labels for training
+    #preprocess the data to generate the adjacency matrix and the label matrix for training
     L_all,Y_all,A = preprocess(args,data,noisy_y)
     for run in range(args.runs):
         best_acc = 0
