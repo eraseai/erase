@@ -19,8 +19,8 @@ for corrupt_ratio in 0.1 0.2 0.3 0.4 0.5; do
         python scripts/train_main_corafull.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type asymm
         python scripts/train_main_corafull.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type symm
     elif [ "$1" = "ogbn-arxiv" ]; then
-        python scripts/train_main_planetoid.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type asymm
-        python scripts/train_main_planetoid.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type symm
+        python scripts/train_main_arxiv.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type asymm
+        python scripts/train_main_arxiv.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type symm
     else
         python scripts/train_main_planetoid.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type asymm
         python scripts/train_main_planetoid.py --dataset $1 --corrupt_ratio $corrupt_ratio --gam2 $gam2 --eps $eps --alpha $alpha --beta $beta --T $T --corrupt_type symm
