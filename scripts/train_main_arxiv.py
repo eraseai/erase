@@ -196,7 +196,7 @@ def main():
         data, train_idx, args.corrupt_ratio, args.seed, args.corrupt_type).to(device).reshape(-1, 1)
     logger.info(args)
     # propagate the noisy labels
-    denoised_y = denoising_propagation(args, noisy_y)
+    denoised_y = denoising_propagation(args,data, split_idx,noisy_y)
     run = 0
     while run < args.runs:
         model.reset_parameters()
