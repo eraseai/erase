@@ -2,7 +2,7 @@
 Official code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance". 
 
 
-[Ling-Hao Chen](https://lhchen.top/)<sup>1,2</sup>, Yuanshuo Zhang<sup>2,3</sup>, Taohua Huang<sup>3</sup>, [Liangcai Su](https://liangcaisu.github.io/)<sup>1</sup>, Zeyi Lin<sup>2,3</sup>, Xi Xiao<sup>1</sup>, [Xiaobo Xia](https://xiaoboxia.github.io/)<sup>4</sup>, [Tongliang Liu](https://tongliang-liu.github.io/)<sup>4</sup>
+[Ling-Hao Chen](https://lhchen.top/)<sup>1,2</sup>, [Yuanshuo Zhang](https://youngsoul0731.github.io/)<sup>2,3</sup>, Taohua Huang<sup>3</sup>, [Liangcai Su](https://liangcaisu.github.io/)<sup>1</sup>, Zeyi Lin<sup>2,3</sup>, Xi Xiao<sup>1</sup>, [Xiaobo Xia](https://xiaoboxia.github.io/)<sup>4</sup>, [Tongliang Liu](https://tongliang-liu.github.io/)<sup>4</sup>
 
 <sup>1</sup>Tsinghua University, <sup>2</sup>SwanHub.co, <sup>3</sup>Xidian University, <sup>4</sup>The University of Sydney
 
