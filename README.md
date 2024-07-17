@@ -1,4 +1,4 @@
-# ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance
+# [CIKM-2024] ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance
 Official code for "ERASE: Error-Resilient Representation Learning on Graphs for Label Noise Tolerance". 
 
 
