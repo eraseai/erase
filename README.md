@@ -145,7 +145,7 @@ PCA Visualization
 
 ## 📄 License
 
-The codes are distributed under a non-commercial [LICENSE](https://github.com/eraseai/erase/blob/master/LICENSE). Note that our code depends on other libraries and datasets which each have their own respective licenses that must also be followed. For commercial usage, please contact [Ling-Hao Chen](https://lhchen.top).
+The codes are distributed under a non-commercial [LICENSE](https://github.com/eraseai/erase/blob/master/LICENSE). Note that our code depends on other libraries and datasets, each with its own respective licenses that must also be followed. For commercial usage, please contact [Ling-Hao Chen](https://lhchen.top).
 
 ## 🌹 Acknowledgments
 
